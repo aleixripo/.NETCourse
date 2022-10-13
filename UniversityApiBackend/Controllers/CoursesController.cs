@@ -12,47 +12,47 @@ namespace UniversityApiBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class CoursesController : ControllerBase
     {
         private readonly UniversityDBContext _context;
 
-        public UsersController(UniversityDBContext context)
+        public CoursesController(UniversityDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Courses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Course>>> GetCourses()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Courses.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Courses/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Course>> GetCourse(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var course = await _context.Courses.FindAsync(id);
 
-            if (user == null)
+            if (course == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return course;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Courses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutCourse(int id, Course course)
         {
-            if (id != user.Id)
+            if (id != course.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(course).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace UniversityApiBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!CourseExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace UniversityApiBackend.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Courses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Course>> PostCourse(Course course)
         {
-            _context.Users.Add(user);
+            _context.Courses.Add(course);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetCourse", new { id = course.Id }, course);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Courses/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteCourse(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var course = await _context.Courses.FindAsync(id);
+            if (course == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UserExists(int id)
+        private bool CourseExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Courses.Any(e => e.Id == id);
         }
     }
 }
