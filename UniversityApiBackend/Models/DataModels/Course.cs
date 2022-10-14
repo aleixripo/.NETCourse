@@ -33,12 +33,12 @@ namespace UniversityApiBackend.Models.DataModels
         public Level Level { get; set; } = Level.Basic;
 
         [Required]
-        public ICollection<Category> Categories { get; set; } = new List<Category>();
+        public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
 
         [Required]
-        public Chapter Chapter { get; set; } = new Chapter();
+        public virtual Chapter Chapter { get; set; } = new Chapter();
 
         [Required]
-        public ICollection<Student> Students { get; set; } = new List<Student>();
+        public virtual ICollection<Student> Students { get; set; } = new List<Student>();
     }
 }

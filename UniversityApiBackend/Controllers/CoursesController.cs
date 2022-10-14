@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UniversityApiBackend.DataAccess;
 using UniversityApiBackend.Models.DataModels;
@@ -34,12 +29,7 @@ namespace UniversityApiBackend.Controllers
         {
             var course = await _context.Courses.FindAsync(id);
 
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return course;
+            return course == null ? (ActionResult<Course>) NotFound() : (ActionResult<Course>) course;
         }
 
         // PUT: api/Courses/5

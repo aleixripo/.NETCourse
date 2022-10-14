@@ -1,5 +1,6 @@
 // 1. Usings to work with EntityFramework
 using Microsoft.EntityFrameworkCore;
+using UniversityApiBackend;
 using UniversityApiBackend.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString(CONNECTIONNAME)
 
 // 3. Add Context
 builder.Services.AddDbContext<UniversityDBContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddTransient<IServices, Services>();
 
 // Add services to the container.
 
