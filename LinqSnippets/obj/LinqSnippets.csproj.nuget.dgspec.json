@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aleix.ripoll.ext\\source\\repos\\University\\LinqSnippets\\LinqSnippets.csproj": {}
+    "C:\\Users\\aleix\\source\\repos\\.NETCourse\\LinqSnippets\\LinqSnippets.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aleix.ripoll.ext\\source\\repos\\University\\LinqSnippets\\LinqSnippets.csproj": {
+    "C:\\Users\\aleix\\source\\repos\\.NETCourse\\LinqSnippets\\LinqSnippets.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aleix.ripoll.ext\\source\\repos\\University\\LinqSnippets\\LinqSnippets.csproj",
+        "projectUniqueName": "C:\\Users\\aleix\\source\\repos\\.NETCourse\\LinqSnippets\\LinqSnippets.csproj",
         "projectName": "LinqSnippets",
-        "projectPath": "C:\\Users\\aleix.ripoll.ext\\source\\repos\\University\\LinqSnippets\\LinqSnippets.csproj",
-        "packagesPath": "C:\\Users\\aleix.ripoll.ext\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aleix.ripoll.ext\\source\\repos\\University\\LinqSnippets\\obj\\",
+        "projectPath": "C:\\Users\\aleix\\source\\repos\\.NETCourse\\LinqSnippets\\LinqSnippets.csproj",
+        "packagesPath": "C:\\Users\\aleix\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aleix\\source\\repos\\.NETCourse\\LinqSnippets\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\aleix.ripoll.ext\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\aleix\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

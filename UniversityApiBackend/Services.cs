@@ -19,5 +19,20 @@ namespace UniversityApiBackend
         {
             return _context.Set<Student>().Where(student => student.Age >= 18);
         }
+
+        public IEnumerable<Student> HaveCourses()
+        {
+            return _context.Set<Student>().Where(student =>student.Courses.Any());
+        }
+
+        public IEnumerable<Course> OneStudentSinged(Level level)
+        {
+            return _context.Set<Course>().Where(course => course.Level == level && course.Students.Any());
+        }
+
+        public IEnumerable<Course> Courses(Level level, Category category)
+        {
+            return _context.Set<Course>().Where(course => course.Level == level && course.Categories == category);
+        }
     }
 }
