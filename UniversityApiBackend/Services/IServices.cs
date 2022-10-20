@@ -1,6 +1,6 @@
 ﻿using UniversityApiBackend.Models.DataModels;
 
-namespace UniversityApiBackend
+namespace UniversityApiBackend.Services
 {
     public interface IServices
     {
@@ -9,6 +9,6 @@ namespace UniversityApiBackend
         IEnumerable<Student> HaveCourses();
         IEnumerable<Course> OneStudentSinged(string level);
         IEnumerable<Course> Courses(string level, string category);
-        
+
     }
 }

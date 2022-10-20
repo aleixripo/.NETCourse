@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UniversityApiBackend.Models.DataModels;
 
-namespace UniversityApiBackend
+namespace UniversityApiBackend.Services
 {
-    public class Services : IServices
+    public class CourseNetService : IServices
     {
         private readonly DbContext _context;
-        public Services(DbContext dbContext)
+        public CourseNetService(DbContext dbContext)
         {
-            this._context = dbContext;
+            _context = dbContext;
         }
         public User SearchUserEmail(string mail)
         {
@@ -22,7 +22,7 @@ namespace UniversityApiBackend
 
         public IEnumerable<Student> HaveCourses()
         {
-            return _context.Set<Student>().Where(student =>student.Courses.Any());
+            return _context.Set<Student>().Where(student => student.Courses.Any());
         }
 
         public IEnumerable<Course> OneStudentSinged(Level level)
@@ -33,6 +33,16 @@ namespace UniversityApiBackend
         public IEnumerable<Course> Courses(Level level, Category category)
         {
             return _context.Set<Course>().Where(course => course.Level == level && course.Categories == category);
+        }
+
+        public IEnumerable<Course> OneStudentSinged(string level)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Course> Courses(string level, string category)
+        {
+            throw new NotImplementedException();
         }
     }
 }
