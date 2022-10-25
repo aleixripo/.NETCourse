@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UniversityApiBackend.Helpers;
 using UniversityApiBackend.Models.DataModels;
@@ -18,6 +17,8 @@ namespace UniversityApiBackend.Controllers
         {
             _jwtSettings = jwtSettings;
         }
+        // Example Users
+        // TODO: Change by real Users in DB
 
         private IEnumerable<User> Logins = new List<User>()
         {
@@ -32,7 +33,7 @@ namespace UniversityApiBackend.Controllers
             {
                 Id = 2,
                 Email = "pau.garcia.ext@inetum.com",
-                Name = "User1",
+                Name = "User",
                 Password = "pau"
             }
         };
@@ -43,7 +44,7 @@ namespace UniversityApiBackend.Controllers
             try
             {
                 var Token = new UserTokens();
-                var Valid = Logins.Any(user => user.Name.Equals(userLogin.UserName , StringComparison.OrdinalIgnoreCase));
+                var Valid = Logins.Any(user => user.Name.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
 
                 if (Valid)
                 {
@@ -56,14 +57,16 @@ namespace UniversityApiBackend.Controllers
                         Id = user.Id,
                         GuidID = Guid.NewGuid()
                     }, _jwtSettings);
-                } else
+                }
+                else
                 {
                     return BadRequest("Wrong Password");
                 }
 
                 return Ok(Token);
 
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception("GetToken Error", e);
             }

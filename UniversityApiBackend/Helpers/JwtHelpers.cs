@@ -25,7 +25,7 @@ namespace UniversityApiBackend.Helpers
             else if (userAccounts.UserName == "User")
             {
                 claims.Add(new Claim(ClaimTypes.Role, "User"));
-                claims.Add(new Claim("UserOnly", "User1"));
+                claims.Add(new Claim("UserOnly", "User"));
             }
 
             return claims;
@@ -61,7 +61,7 @@ namespace UniversityApiBackend.Helpers
 
                 // Generate our JWT
                 var jwToken = new JwtSecurityToken(
-                    issuer: jwtSettings.ValidIUser,
+                    issuer: jwtSettings.ValidIssuer,
                     audience: jwtSettings.ValidAudience,
                     claims: GetClaims(model, out Id),
                     notBefore: new DateTimeOffset(DateTime.Now).DateTime,
@@ -76,7 +76,8 @@ namespace UniversityApiBackend.Helpers
                 userToken.GuidID = Id;
 
                 return userToken;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception("Error Generating the JWT", e);
             }
