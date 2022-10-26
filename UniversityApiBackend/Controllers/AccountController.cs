@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UniversityApiBackend.DataAccess;
 using UniversityApiBackend.Helpers;
 using UniversityApiBackend.Models.DataModels;
 
@@ -10,45 +11,35 @@ namespace UniversityApiBackend.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly UniversityDBContext _dbContext;
 
         private readonly JwtSettings _jwtSettings;
 
-        public AccountController(JwtSettings jwtSettings)
+        public AccountController(JwtSettings jwtSettings, UniversityDBContext dBContext)
         {
             _jwtSettings = jwtSettings;
+            _dbContext = dBContext;
         }
-        // Example Users
-        // TODO: Change by real Users in DB
 
-        private IEnumerable<User> Logins = new List<User>()
+        private IEnumerable<User> Logins()
         {
-            new User()
-            {
-                Id = 1,
-                Email = "aleix.ripoll.ext@inetum.com",
-                Name = "Admin",
-                Password = "Admin"
-            },
-            new User()
-            {
-                Id = 2,
-                Email = "pau.garcia.ext@inetum.com",
-                Name = "User",
-                Password = "pau"
-            }
-        };
+            return _dbContext.Users.ToList();
+        }
 
         [HttpPost]
-        public IActionResult GetToken(UserLogins userLogin)
+        public async Task<IActionResult> GetTokenAsync(UserLogins userLogin)
         {
             try
             {
                 var Token = new UserTokens();
-                var Valid = Logins.Any(user => user.Name.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
+
+                List<User> listUsers = new List<User>(Logins());
+
+                var Valid = listUsers.Any(user => user.Email.Equals(userLogin.Email, StringComparison.OrdinalIgnoreCase));
 
                 if (Valid)
                 {
-                    var user = Logins.FirstOrDefault(user => user.Name.Equals(userLogin.UserName, StringComparison.OrdinalIgnoreCase));
+                    var user = listUsers.FirstOrDefault(user => user.Email.Equals(userLogin.Email, StringComparison.OrdinalIgnoreCase));
 
                     Token = JwtHelpers.GenTokenKey(new UserTokens()
                     {
@@ -76,8 +67,7 @@ namespace UniversityApiBackend.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Administrator")]
         public IActionResult GetUserList()
         {
-            return Ok(Logins);
+            return Ok(_dbContext.Users);
         }
-
     }
 }

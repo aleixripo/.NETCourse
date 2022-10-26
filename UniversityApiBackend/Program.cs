@@ -31,7 +31,7 @@ builder.Services.AddScoped<IStudentsService, StudentsService>();
 // 8. Add Authorization
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("UserOnlyPolicy", policy => policy.RequireClaim("UserOnly", "User1"));
+    options.AddPolicy("UserOnlyPolicy", policy => policy.RequireClaim("UserOnly", "User"));
 });
 
 
